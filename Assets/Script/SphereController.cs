@@ -5,8 +5,8 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
+    public int SphereShooting;
     public Vector3 SpherePos;
-    public bool SphereShooting;
     
     void Update()
     {
@@ -19,6 +19,11 @@ public class SphereController : MonoBehaviour
         {
             Invoke("ResetPosition", 3f);
         }
+
+        if (Sphere.transform.position.z < (SpherePos.z - 1.0f))
+        {
+            ResetPosition();
+        }
     }
 
     void ResetPosition()
@@ -29,15 +34,20 @@ public class SphereController : MonoBehaviour
             Sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
-            if (SphereShooting)
+            if (SphereShooting > 0)
             {
-                Sphere.transform.position = SpherePos + new Vector3(0, 0, 1f);
-                Sphere.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1f), ForceMode.Impulse);
+                Sphere.transform.position = SpherePos + new Vector3(0, 0, 2f);
+                Invoke("Shooting", 1f);
             }
             else
             {
                 Sphere.transform.position = SpherePos;
             }
         }
+    }
+
+    void Shooting()
+    {
+        Sphere.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -SphereShooting), ForceMode.Impulse);
     }
 }

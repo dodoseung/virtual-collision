@@ -610,8 +610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetController: {fileID: 736498473}
   Sphere: {fileID: 655476538}
-  SpherePos: {x: 0, y: 0, z: 0}
   SphereShooting: 0
+  SpherePos: {x: 0, y: 0, z: 0}
 --- !u!114 &693346352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,8 +654,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac5a26245b2e3a48b377027b3a9d1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SphereController: {fileID: 0}
-  TargetController: {fileID: 0}
+  TargetController: {fileID: 736498473}
+  trial: 0
+  SphereShooting: 0
+  TargetVelocity: 0
+  integration: 0
 --- !u!1 &736498473
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +899,55 @@ Transform:
   - {fileID: 559123507}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1287319661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287319663}
+  - component: {fileID: 1287319662}
+  m_Layer: 0
+  m_Name: CSVWriter2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1287319662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287319661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840e3e6f4986ef74faa622e3b6377ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plane: {fileID: 2123337583}
+  Camera: {fileID: 1003465057}
+  Light: {fileID: 821697254}
+  TestController: {fileID: 693346350}
+  TargetController: {fileID: 736498473}
+  Sphere: {fileID: 655476538}
+--- !u!4 &1287319663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287319661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.989487, y: -2.2274923, z: -3.2598386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373280399
 GameObject:
