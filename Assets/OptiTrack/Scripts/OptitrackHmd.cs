@@ -311,7 +311,7 @@ public class OptitrackHmd : MonoBehaviour
 
         public const string OvrPluginDllBaseName = "OVRPlugin";
         public const CallingConvention OvrPluginDllCallingConvention = CallingConvention.Cdecl;
-
+        
         [DllImport( OvrPluginDllBaseName, CallingConvention = OvrPluginDllCallingConvention )]
         public static extern Int32 ovrp_GetCaps();
 

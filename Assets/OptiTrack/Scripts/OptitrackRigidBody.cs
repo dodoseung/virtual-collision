@@ -50,7 +50,7 @@ public class OptitrackRigidBody : MonoBehaviour
 #endif
 
 
-    void Update()
+    private void FixedUpdate()
     {
         UpdatePose();
     }
@@ -61,8 +61,10 @@ public class OptitrackRigidBody : MonoBehaviour
         OptitrackRigidBodyState rbState = StreamingClient.GetLatestRigidBodyState( RigidBodyId );
         if ( rbState != null )
         {
-            this.transform.localPosition = rbState.Pose.Position;
-            this.transform.localRotation = rbState.Pose.Orientation;
+            //this.transform.localPosition = rbState.Pose.Position;
+            //this.transform.localRotation = rbState.Pose.Orientation;
+            GetComponent<Rigidbody>().MovePosition(rbState.Pose.Position);
+            GetComponent<Rigidbody>().MoveRotation(rbState.Pose.Orientation);
         }
     }
 }
