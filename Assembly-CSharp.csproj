@@ -71,9 +71,10 @@
     <Compile Include="Assets\OptiTrack\Scripts\OptitrackSkeletonAnimator.cs" />
     <Compile Include="Assets\OptiTrack\Scripts\OptitrackStreamingClient.cs" />
     <Compile Include="Assets\Script\Impact.cs" />
+    <Compile Include="Assets\Script\MainController.cs" />
     <Compile Include="Assets\Script\Move.cs" />
     <Compile Include="Assets\Script\ObjectPosition.cs" />
-    <Compile Include="Assets\Script\SpherePosition.cs" />
+    <Compile Include="Assets\Script\SphereController.cs" />
     <Compile Include="Assets\Script\Study1\AxisChange.cs" />
     <Compile Include="Assets\Script\Study1\BetweenLine.cs" />
     <Compile Include="Assets\Script\Study1\CSVWriter.cs" />

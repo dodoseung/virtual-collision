@@ -28,7 +28,7 @@ public class ObjectPosition : MonoBehaviour
             Sphere.SetActive(true);
             Sphere.transform.position = new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
 
-            this.GetComponent<SpherePosition>().SpherePos = new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
+            this.GetComponent<SphereController>().SpherePos = new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
 
             Destroy(this);
         }
