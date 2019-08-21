@@ -5,9 +5,10 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
-    public int SphereShooting;
+    public bool SphereShooting;
     public Vector3 SpherePos;
-    
+    public float Friction, Bounciness;
+
     void Update()
     {
         if (TargetController.GetComponent<TargetController>().TargetCollision)
@@ -26,7 +27,7 @@ public class SphereController : MonoBehaviour
         }
     }
 
-    void ResetPosition()
+    public void ResetPosition()
     {
         if (!Sphere.transform.position.Equals(SpherePos))
         {
@@ -34,7 +35,11 @@ public class SphereController : MonoBehaviour
             Sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
-            if (SphereShooting > 0)
+            Sphere.GetComponent<Collider>().material.dynamicFriction = Friction;
+            Sphere.GetComponent<Collider>().material.staticFriction = Friction;
+            Sphere.GetComponent<Collider>().material.bounciness = Bounciness;
+
+            if (SphereShooting)
             {
                 Sphere.transform.position = SpherePos + new Vector3(0, 0, 2f);
                 Invoke("Shooting", 1f);
@@ -48,6 +53,6 @@ public class SphereController : MonoBehaviour
 
     void Shooting()
     {
-        Sphere.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -SphereShooting), ForceMode.Impulse);
+        Sphere.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -2f), ForceMode.Impulse);
     }
 }

@@ -12,6 +12,7 @@ public class Target : MonoBehaviour
         CollisionDetection = false;
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.impulse.Equals(Vector3.zero))
@@ -19,19 +20,18 @@ public class Target : MonoBehaviour
             /*
             float SphereVelocity = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
 
-            if (TargetVelocity == 1 && SphereVelocity > 0.5f && SphereVelocity <= 1.5f)
+            if (TargetVelocity == 1 && SphereVelocity > 0f && SphereVelocity <= 2f)
             {
-                CollisionDetection = true;
-            }
-            else if (TargetVelocity == 2 && SphereVelocity > 1.5f && SphereVelocity <= 2.5f)
-            {
+                BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             else if (TargetVelocity == 3 && SphereVelocity > 2.5f && SphereVelocity <= 3.5f)
             {
+                BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             */
+            BroadcastMessage("Explode");
             CollisionDetection = true;
         }
     }
@@ -43,19 +43,18 @@ public class Target : MonoBehaviour
             /*
             float SphereVelocity = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
 
-            if (TargetVelocity == 1 && SphereVelocity > 0.5f && SphereVelocity <= 1.5f)
+            if (TargetVelocity == 1 && SphereVelocity > 2f && SphereVelocity <= 4f)
             {
-                CollisionDetection = true;
-            }
-            else if (TargetVelocity == 2 && SphereVelocity > 1.5f && SphereVelocity <= 2.5f)
-            {
+                BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             else if (TargetVelocity == 3 && SphereVelocity > 2.5f && SphereVelocity <= 3.5f)
             {
+                BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             */
+            BroadcastMessage("Explode");
             CollisionDetection = true;
         }
     }

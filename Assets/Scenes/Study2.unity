@@ -512,7 +512,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655476538}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aad0768b388e9d94a87e605e2239b564, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -571,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655476538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 2, z: 1.83}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -610,8 +610,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetController: {fileID: 736498473}
   Sphere: {fileID: 655476538}
-  SphereShooting: 0
+  SphereShooting: 1
   SpherePos: {x: 0, y: 0, z: 0}
+  Friction: 0
+  Bounciness: 0
 --- !u!114 &693346352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,9 +658,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetController: {fileID: 736498473}
   trial: 0
-  SphereShooting: 0
   TargetVelocity: 0
+  SphereShooting: 0
   integration: 0
+  TargetCollision: 0
 --- !u!1 &736498473
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +693,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 38778715364417633, guid: 7536449aab6bbd54fbfa34b7cca4b1d8, type: 3}
   TargetColor: {fileID: 2100000, guid: f2d4d4259f807b443ba53035e7c8ab09, type: 2}
+  HmdPos: {x: 0, y: 0, z: 0}
   TargetPos: {x: 0, y: 0, z: 0}
+  TargetQuat: {x: 0, y: 0, z: 0, w: 0}
   TargetCollision: 0
   UpperBound: 0
   LowerBound: 0
@@ -916,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1287319662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123337583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 1}
+  m_LocalPosition: {x: 2.619, y: 2, z: -0.159}
   m_LocalScale: {x: 0.15, y: 0.2, z: 0.01}
   m_Children:
   - {fileID: 1373280400}

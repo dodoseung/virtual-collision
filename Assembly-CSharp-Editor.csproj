@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Mesh Explosion\Editor\MeshExploderEditor.cs" />
     <Compile Include="Assets\OptiTrack\Editor\Scripts\OptitrackRigidBodyEditor.cs" />
     <None Include="Assets\OptiTrack\Editor\Materials\MarkerShader.shader" />
     <Reference Include="Unity.Timeline.Editor">

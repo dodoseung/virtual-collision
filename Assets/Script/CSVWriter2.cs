@@ -50,10 +50,23 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[8] = TestController.GetComponent<SphereController>().SpherePos.z.ToString();
 
             // Plane
-
-            //rowDataTemp[1] = obj[0].GetComponent<TargetTran>().trial.ToString();
-            //rowDataTemp[4] = Convert.ToInt32(obj[0].GetComponent<TargetTran>().collide).ToString();
-            //rowDataTemp[5] = Convert.ToInt32(obj[0].GetComponent<TargetTran>().collideD).ToString();
+            rowDataTemp[9] = Plane.transform.position.x.ToString();
+            rowDataTemp[10] = Plane.transform.position.y.ToString();
+            rowDataTemp[11] = Plane.transform.position.z.ToString();
+            rowDataTemp[12] = Plane.transform.eulerAngles.x.ToString();
+            rowDataTemp[13] = Plane.transform.eulerAngles.y.ToString();
+            rowDataTemp[14] = Plane.transform.eulerAngles.z.ToString();
+            rowDataTemp[15] = Plane.GetComponent<Rigidbody>().velocity.x.ToString();
+            rowDataTemp[16] = Plane.GetComponent<Rigidbody>().velocity.y.ToString();
+            rowDataTemp[17] = Plane.GetComponent<Rigidbody>().velocity.z.ToString();
+            rowDataTemp[18] = Plane.GetComponent<Rigidbody>().velocity.magnitude.ToString();
+            rowDataTemp[19] = Plane.GetComponent<Rigidbody>().angularVelocity.x.ToString();
+            rowDataTemp[20] = Plane.GetComponent<Rigidbody>().angularVelocity.y.ToString();
+            rowDataTemp[21] = Plane.GetComponent<Rigidbody>().angularVelocity.z.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().angularVelocity.magnitude.ToString();
+            rowDataTemp[23] = Plane.transform.lossyScale.x.ToString();
+            rowDataTemp[24] = Plane.transform.lossyScale.y.ToString();
+            rowDataTemp[25] = Plane.transform.lossyScale.z.ToString();
 
             leng++;
             rowData.Add(rowDataTemp);

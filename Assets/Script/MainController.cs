@@ -6,13 +6,13 @@ public class MainController : MonoBehaviour
 {
     public GameObject TargetController;
     public int trial;
-    public int SphereShooting, TargetVelocity;
-    public bool integration, TargetCollision;
+    public int TargetVelocity;
+    public bool SphereShooting, integration, TargetCollision;
 
     void Start()
     {
         trial = 0;
-        SphereShooting = 0;
+        SphereShooting = false;
         TargetVelocity = 1;
         integration = false;
     }

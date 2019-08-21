@@ -6,7 +6,8 @@ public class TargetController : MonoBehaviour
 {
     public GameObject Target;
     public Material TargetColor;
-    public Vector3 TargetPos;
+    public Vector3 HmdPos, TargetPos;
+    public Quaternion TargetQuat;
     public bool TargetCollision;
     public float UpperBound, LowerBound, Zoffset;
     public int TargetVelocity;
@@ -32,19 +33,15 @@ public class TargetController : MonoBehaviour
 
     void SpawnTarget()
     {
-        TargetPos = new Vector3(Random.Range(LowerBound, UpperBound), Random.Range(LowerBound, UpperBound), Random.Range(Zoffset + LowerBound, Zoffset + UpperBound));
+        TargetPos = HmdPos + new Vector3(Random.Range(LowerBound, UpperBound), Random.Range(LowerBound, UpperBound), Random.Range(Zoffset + LowerBound, Zoffset + UpperBound));
+        TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
 
-        TargetClone = Instantiate(Target, TargetPos, Quaternion.identity);
-
+        TargetClone = Instantiate(Target, TargetPos, TargetQuat);
         TargetClone.GetComponent<Target>().TargetVelocity = TargetVelocity;
 
         if (TargetVelocity == 1)
         {
             TargetColor.color = Color.green;
-        }
-        else if (TargetVelocity == 2)
-        {
-            TargetColor.color = Color.yellow;
         }
         else if (TargetVelocity == 3)
         {
