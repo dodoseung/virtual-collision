@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainController : MonoBehaviour
 {
-    public GameObject TargetController;
+    public GameObject TargetController, Status, Sphere;
     public int Trial, MaxTrial = 30, AllTrial, SetTrial;
     public int TargetVelocity;
     public float Friction, Bounciness;
@@ -33,8 +34,13 @@ public class MainController : MonoBehaviour
             Trial = AllTrial % MaxTrial;
             SetTrial = AllTrial / MaxTrial;
 
-            VariableSetup(SetTrial);
+            VariableSetup(ShuffleList[SetTrial]);
         }
+/*
+        Status.GetComponent<TextMeshProUGUI>().SetText("Set: " + SetTrial.ToString() + " Trial: " + Trial.ToString() + "\n" +
+            Sphere.GetComponent<Rigidbody>().velocity.magnitude.ToString("F1") + "\n" +
+            "Integration: " + Integration.ToString() + "\n" + "TargetVelocity: " + TargetVelocity + "\n" +
+            "Friction: " + Friction.ToString("F1") + "\n" + "Bounciness: " + Bounciness.ToString("F1"));*/
     }
 
     void VariableSetup(int SetTrial)

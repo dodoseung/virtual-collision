@@ -6,7 +6,7 @@ public class TargetController : MonoBehaviour
 {
     public GameObject Target;
     public Material TargetColor;
-    public Vector3 HmdPos, TargetPos;
+    public Vector3 HmdPos, HmdFoward, HmdRight, HmdUp, TargetPos;
     public Quaternion TargetQuat;
     public bool TargetCollision;
     public float UpperBound, LowerBound, Zoffset;
@@ -29,14 +29,20 @@ public class TargetController : MonoBehaviour
             Destroy(TargetClone);
             SpawnTarget();
         }
+
+        TargetVelocityChanger();
     }
 
     void SpawnTarget()
     {
-        TargetPos = HmdPos + new Vector3(Random.Range(LowerBound, UpperBound), Random.Range(LowerBound, UpperBound), Random.Range(Zoffset + LowerBound, Zoffset + UpperBound));
+        TargetPos = HmdPos + Random.Range(LowerBound, UpperBound) * HmdRight + Random.Range(LowerBound, UpperBound) * HmdUp + Random.Range(Zoffset + LowerBound, Zoffset + UpperBound) * HmdFoward;
         TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
 
         TargetClone = Instantiate(Target, TargetPos, TargetQuat);
+    }
+
+    void TargetVelocityChanger()
+    {
         TargetClone.GetComponent<Target>().TargetVelocity = TargetVelocity;
 
         if (TargetVelocity == 1)

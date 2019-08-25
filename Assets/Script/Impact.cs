@@ -52,23 +52,25 @@ public class Impact : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        GameObject.Find("Target(Clone)").GetComponent<Target>().SphereVelocity = this.GetComponent<Rigidbody>().velocity.magnitude;
+
         Impulse = Vector3.zero;
         Magnitude = 0;
         Speed = 0;
         pk = Vector3.zero;
         vk = Vector3.zero;
         Direction = Vector3.zero;
-        PlaneTouch = false;
+        PlaneTouch = false;    
     }
 
     private Vector3 IntegrationVector(Vector3 _pk, Vector3 _vk, float _speed)
     {
         _pk = pk.normalized;
         _vk = vk.normalized;
-        a1 = 1.880565208227337f;
-        b1 = 0.085452450340846f;
-        a2 = 2.298139024394025f;
-        b2 = 207.5678940745083f;
+        a1 = 23.416504758810860f;
+        b1 = 0.004467197881167f;
+        a2 = 22.344494266653612f;
+        b2 = 0.265585204526577f;
 
         Sigma_pk = a1 * (float)Math.Exp(b1 * _speed);
         Sigma_vk = 1 / ((float)Math.Exp(b2 * _speed) - 1) + a2;

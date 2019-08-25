@@ -6,8 +6,8 @@ public class SphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
     public bool Integration;
-    public Vector3 SpherePos;
-    public float Friction, Bounciness;
+    public Vector3 SpherePos, HmdFoward;
+    public float Friction, Bounciness, SphereDistance = 1f, SphereSpeed = 2f;
 
     void Update()
     {
@@ -32,8 +32,8 @@ public class SphereController : MonoBehaviour
         if (!Sphere.transform.position.Equals(SpherePos))
         {
             Debug.Log("The Sphere Position is reseted");
-            Sphere.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Sphere.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            Sphere.GetComponent<Rigidbody>().isKinematic = true;
+            Sphere.GetComponent<Rigidbody>().isKinematic = false;
 
             Sphere.GetComponent<Collider>().material.dynamicFriction = Friction;
             Sphere.GetComponent<Collider>().material.staticFriction = Friction;
@@ -41,13 +41,16 @@ public class SphereController : MonoBehaviour
 
             Sphere.GetComponent<Impact>().Integration = Integration;
 
-            Sphere.transform.position = SpherePos + new Vector3(0, 0, 2f);
+            Sphere.transform.position = SpherePos + SphereDistance * HmdFoward;
+
+            CancelInvoke();
+
             Invoke("Shooting", 1f);
         }
     }
 
     void Shooting()
     {
-        Sphere.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -2f), ForceMode.Impulse);
+        Sphere.GetComponent<Rigidbody>().AddForce(-SphereSpeed * HmdFoward, ForceMode.Impulse);
     }
 }

@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
     public bool CollisionDetection;
     public int TargetVelocity;
+    public float SphereVelocity;
 
     void Start()
     {
@@ -17,22 +18,18 @@ public class Target : MonoBehaviour
     {
         if (!collision.impulse.Equals(Vector3.zero))
         {
-            /*
-            float SphereVelocity = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-
-            if (TargetVelocity == 1 && SphereVelocity > 0f && SphereVelocity <= 2f)
+            if (TargetVelocity == 1 && SphereVelocity <= 4f)
             {
+                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
-            else if (TargetVelocity == 3 && SphereVelocity > 2.5f && SphereVelocity <= 3.5f)
+            else if (TargetVelocity == 3 && SphereVelocity > 4f)
             {
+                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
-            */
-            BroadcastMessage("Explode");
-            CollisionDetection = true;
         }
     }
 
@@ -40,22 +37,26 @@ public class Target : MonoBehaviour
     {
         if (!collision.impulse.Equals(Vector3.zero))
         {
-            /*
-            float SphereVelocity = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-
-            if (TargetVelocity == 1 && SphereVelocity > 2f && SphereVelocity <= 4f)
+            if (TargetVelocity == 1 && SphereVelocity <= 4f)
             {
+                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
-            else if (TargetVelocity == 3 && SphereVelocity > 2.5f && SphereVelocity <= 3.5f)
+            else if (TargetVelocity == 3 && SphereVelocity > 4f)
             {
+                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
-            */
-            BroadcastMessage("Explode");
-            CollisionDetection = true;
         }
+    }
+
+    void PilotCSV(Vector3 _PointTarget, Vector3 _PointCollision, float _Velocity)
+    {
+        GameObject.Find("PilotCSV").GetComponent<PilotCSV>().PointTarget = _PointTarget;
+        GameObject.Find("PilotCSV").GetComponent<PilotCSV>().PointCollision = _PointCollision;
+        GameObject.Find("PilotCSV").GetComponent<PilotCSV>().Velocity = _Velocity;
+        GameObject.Find("PilotCSV").GetComponent<PilotCSV>().LoggingData();
     }
 }

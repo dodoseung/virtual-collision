@@ -18,7 +18,6 @@ public class CSVWriter2 : MonoBehaviour
     void Start()
     {
         Setup();
-        
     }
 
     void Update()
@@ -55,6 +54,8 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[6] = TestController.GetComponent<SphereController>().SpherePos.x.ToString();
             rowDataTemp[7] = TestController.GetComponent<SphereController>().SpherePos.y.ToString();
             rowDataTemp[8] = TestController.GetComponent<SphereController>().SpherePos.z.ToString();
+            rowDataTemp[8] = TestController.GetComponent<SphereController>().SphereDistance.ToString();
+            rowDataTemp[8] = TestController.GetComponent<SphereController>().SphereSpeed.ToString();
 
             // Target Controller
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetColor.color.r.ToString();
@@ -63,6 +64,15 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.x.ToString();
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.y.ToString();
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.z.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdFoward.x.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdFoward.y.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdFoward.z.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdRight.x.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdRight.y.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdRight.z.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdUp.x.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdUp.y.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdUp.z.ToString();
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.x.ToString();
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.y.ToString();
             rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.z.ToString();

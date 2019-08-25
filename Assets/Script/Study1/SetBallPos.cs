@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetBallPos : MonoBehaviour
 {
-    public GameObject hmd, plane, ball, TargetController;
+    public GameObject hmd, plane, ball;
     public Vector3 BallPos, BallX, BallY, BallZ;
 
     int buffer = 200, num = 1000, count = 0;
