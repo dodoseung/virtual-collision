@@ -5,22 +5,28 @@ using System;
 
 public class Impact : MonoBehaviour
 {
-    public bool Integration = true;
-    public bool PlaneTouch = false;
     public GameObject Plane;
+    public bool PlaneTouch = false;
+    public bool Integration;
+
+    public Vector3 Impulse, pk, vk, Direction;
+    public float Magnitude, Speed;
+
+    public Vector3 IntegratedVector;
+    public float a1, b1, a2, b2, Sigma_pk, Sigma_vk, Denom, W_pk, W_vk;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 impulse = collision.impulse;
-        float magnitude = impulse.magnitude;
+        Impulse = collision.impulse;
+        Magnitude = Impulse.magnitude;
 
-        float speed = (Plane.GetComponent<Rigidbody>().velocity - this.GetComponent<Rigidbody>().velocity).magnitude; // The definition of a speed ?
-        Vector3 pk = collision.contacts[0].normal; // The normal vector of contact point
-        Vector3 vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
-        Vector3 direction = IntegrationVector(pk, vk, speed);
+        Speed = Plane.GetComponent<Rigidbody>().velocity.magnitude;
+        pk = collision.contacts[0].normal; // The normal vector of contact point
+        vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
+        Direction = IntegrationVector(pk, vk, Speed);
 
         if (Integration)
-            this.GetComponent<Rigidbody>().AddForce(magnitude * direction - impulse, ForceMode.Impulse);
+            this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
 
         if (collision.collider.CompareTag("Plane"))
         {
@@ -30,35 +36,50 @@ public class Impact : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Vector3 impulse = collision.impulse;
-        float magnitude = impulse.magnitude;
+        Impulse = collision.impulse;
+        Magnitude = Impulse.magnitude;
 
-        float speed = (Plane.GetComponent<Rigidbody>().velocity - this.GetComponent<Rigidbody>().velocity).magnitude; // The definition of a speed ?
-        Vector3 pk = collision.contacts[0].normal; // The normal vector of contact point
-        Vector3 vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
-        Vector3 direction = IntegrationVector(pk, vk, speed);
+        Speed = Plane.GetComponent<Rigidbody>().velocity.magnitude;
+        pk = collision.contacts[0].normal; // The normal vector of contact point
+        vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
+        Direction = IntegrationVector(pk, vk, Speed);
 
         if (Integration)
-            this.GetComponent<Rigidbody>().AddForce(magnitude * direction - impulse, ForceMode.Impulse);
+            this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
 
         PlaneTouch = false;
     }
 
-    private Vector3 IntegrationVector(Vector3 pk, Vector3 vk, float speed)
+    private void OnCollisionExit(Collision collision)
     {
-        pk = pk.normalized;
-        vk = vk.normalized;
-        float a1 = 1.880565208227337f, b1 = 0.085452450340846f, a2 = 2.298139024394025f, b2 = 207.5678940745083f;
-        float sigma_pk = a1 * (float)Math.Exp(b1 * speed);
-        float sigma_vk = 1 / ((float)Math.Exp(b2 * speed) - 1) + a2;
+        Impulse = Vector3.zero;
+        Magnitude = 0;
+        Speed = 0;
+        pk = Vector3.zero;
+        vk = Vector3.zero;
+        Direction = Vector3.zero;
+        PlaneTouch = false;
+    }
 
-        float denom = 1/(float)Math.Pow(sigma_pk,2) + 1/(float)Math.Pow(sigma_vk,2);
+    private Vector3 IntegrationVector(Vector3 _pk, Vector3 _vk, float _speed)
+    {
+        _pk = pk.normalized;
+        _vk = vk.normalized;
+        a1 = 1.880565208227337f;
+        b1 = 0.085452450340846f;
+        a2 = 2.298139024394025f;
+        b2 = 207.5678940745083f;
 
-        float w_pk = 1 / (float)Math.Pow(sigma_pk, 2) / denom;
-        float w_vk = 1 / (float)Math.Pow(sigma_vk, 2) / denom;
+        Sigma_pk = a1 * (float)Math.Exp(b1 * _speed);
+        Sigma_vk = 1 / ((float)Math.Exp(b2 * _speed) - 1) + a2;
 
-        Vector3 integrated_vector = w_pk*pk + w_vk*vk;
+        Denom = 1/(float)Math.Pow(Sigma_pk,2) + 1/(float)Math.Pow(Sigma_vk,2);
 
-        return integrated_vector.normalized;
+        W_pk = 1 / (float)Math.Pow(Sigma_pk, 2) / Denom;
+        W_vk = 1 / (float)Math.Pow(Sigma_vk, 2) / Denom;
+
+        IntegratedVector = W_pk*pk + W_vk*vk;
+
+        return IntegratedVector.normalized;
     }
 }

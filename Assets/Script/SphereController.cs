@@ -5,7 +5,7 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
-    public bool SphereShooting;
+    public bool Integration;
     public Vector3 SpherePos;
     public float Friction, Bounciness;
 
@@ -39,15 +39,10 @@ public class SphereController : MonoBehaviour
             Sphere.GetComponent<Collider>().material.staticFriction = Friction;
             Sphere.GetComponent<Collider>().material.bounciness = Bounciness;
 
-            if (SphereShooting)
-            {
-                Sphere.transform.position = SpherePos + new Vector3(0, 0, 2f);
-                Invoke("Shooting", 1f);
-            }
-            else
-            {
-                Sphere.transform.position = SpherePos;
-            }
+            Sphere.GetComponent<Impact>().Integration = Integration;
+
+            Sphere.transform.position = SpherePos + new Vector3(0, 0, 2f);
+            Invoke("Shooting", 1f);
         }
     }
 

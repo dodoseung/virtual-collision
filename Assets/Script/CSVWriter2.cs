@@ -32,22 +32,42 @@ public class CSVWriter2 : MonoBehaviour
         }
         else
         {
-            // Time
             string[] rowDataTemp = new string[listLength];
+
+            // Time
             timer += Time.deltaTime;
             rowDataTemp[0] = timer.ToString();
 
             // Test Controller (Main Controller)
-            rowDataTemp[1] = TestController.GetComponent<MainController>().trial.ToString();
-            rowDataTemp[2] = TestController.GetComponent<MainController>().SphereShooting.ToString();
+            rowDataTemp[1] = TestController.GetComponent<MainController>().AllTrial.ToString();
+            rowDataTemp[1] = TestController.GetComponent<MainController>().MaxTrial.ToString();
+            rowDataTemp[1] = TestController.GetComponent<MainController>().SetTrial.ToString();
+            rowDataTemp[1] = TestController.GetComponent<MainController>().Trial.ToString();
+
+            rowDataTemp[4] = Convert.ToInt32(TestController.GetComponent<MainController>().Integration).ToString();
             rowDataTemp[3] = TestController.GetComponent<MainController>().TargetVelocity.ToString();
-            rowDataTemp[4] = Convert.ToInt32(TestController.GetComponent<MainController>().integration).ToString();
+            rowDataTemp[3] = TestController.GetComponent<MainController>().Friction.ToString();
+            rowDataTemp[3] = TestController.GetComponent<MainController>().Bounciness.ToString();
+
             rowDataTemp[5] = Convert.ToInt32(TestController.GetComponent<MainController>().TargetCollision).ToString();
 
             // Test Controller (Sphere Controller)
             rowDataTemp[6] = TestController.GetComponent<SphereController>().SpherePos.x.ToString();
             rowDataTemp[7] = TestController.GetComponent<SphereController>().SpherePos.y.ToString();
             rowDataTemp[8] = TestController.GetComponent<SphereController>().SpherePos.z.ToString();
+
+            // Target Controller
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetColor.color.r.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetColor.color.g.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetColor.color.b.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.x.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.y.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().HmdPos.z.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.x.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.y.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetPos.z.ToString();
+            rowDataTemp[6] = TargetController.GetComponent<TargetController>().TargetQuat.z.ToString();
+
 
             // Plane
             rowDataTemp[9] = Plane.transform.position.x.ToString();
@@ -56,6 +76,10 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[12] = Plane.transform.eulerAngles.x.ToString();
             rowDataTemp[13] = Plane.transform.eulerAngles.y.ToString();
             rowDataTemp[14] = Plane.transform.eulerAngles.z.ToString();
+            rowDataTemp[23] = Plane.transform.lossyScale.x.ToString();
+            rowDataTemp[24] = Plane.transform.lossyScale.y.ToString();
+            rowDataTemp[25] = Plane.transform.lossyScale.z.ToString();
+
             rowDataTemp[15] = Plane.GetComponent<Rigidbody>().velocity.x.ToString();
             rowDataTemp[16] = Plane.GetComponent<Rigidbody>().velocity.y.ToString();
             rowDataTemp[17] = Plane.GetComponent<Rigidbody>().velocity.z.ToString();
@@ -64,9 +88,83 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[20] = Plane.GetComponent<Rigidbody>().angularVelocity.y.ToString();
             rowDataTemp[21] = Plane.GetComponent<Rigidbody>().angularVelocity.z.ToString();
             rowDataTemp[22] = Plane.GetComponent<Rigidbody>().angularVelocity.magnitude.ToString();
-            rowDataTemp[23] = Plane.transform.lossyScale.x.ToString();
-            rowDataTemp[24] = Plane.transform.lossyScale.y.ToString();
-            rowDataTemp[25] = Plane.transform.lossyScale.z.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().mass.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().drag.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().angularDrag.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().useGravity.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().isKinematic.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().interpolation.ToString();
+            rowDataTemp[22] = Plane.GetComponent<Rigidbody>().collisionDetectionMode.ToString();
+
+            rowDataTemp[25] = Plane.transform.right.x.ToString();
+            rowDataTemp[25] = Plane.transform.right.y.ToString();
+            rowDataTemp[25] = Plane.transform.right.z.ToString();
+            rowDataTemp[25] = Plane.transform.up.x.ToString();
+            rowDataTemp[25] = Plane.transform.up.y.ToString();
+            rowDataTemp[25] = Plane.transform.up.z.ToString();
+            rowDataTemp[25] = Plane.transform.forward.x.ToString();
+            rowDataTemp[25] = Plane.transform.forward.y.ToString();
+            rowDataTemp[25] = Plane.transform.forward.z.ToString();
+
+            // Sphere
+            rowDataTemp[9] = Sphere.transform.position.x.ToString();
+            rowDataTemp[10] = Sphere.transform.position.y.ToString();
+            rowDataTemp[11] = Sphere.transform.position.z.ToString();
+            rowDataTemp[12] = Sphere.transform.eulerAngles.x.ToString();
+            rowDataTemp[13] = Sphere.transform.eulerAngles.y.ToString();
+            rowDataTemp[14] = Sphere.transform.eulerAngles.z.ToString();
+            rowDataTemp[23] = Sphere.transform.lossyScale.x.ToString();
+            rowDataTemp[24] = Sphere.transform.lossyScale.y.ToString();
+            rowDataTemp[25] = Sphere.transform.lossyScale.z.ToString();
+            rowDataTemp[25] = Sphere.GetComponent<SphereCollider>().radius.ToString();
+
+            rowDataTemp[15] = Sphere.GetComponent<Rigidbody>().velocity.x.ToString();
+            rowDataTemp[16] = Sphere.GetComponent<Rigidbody>().velocity.y.ToString();
+            rowDataTemp[17] = Sphere.GetComponent<Rigidbody>().velocity.z.ToString();
+            rowDataTemp[18] = Sphere.GetComponent<Rigidbody>().velocity.magnitude.ToString();
+            rowDataTemp[19] = Sphere.GetComponent<Rigidbody>().angularVelocity.x.ToString();
+            rowDataTemp[20] = Sphere.GetComponent<Rigidbody>().angularVelocity.y.ToString();
+            rowDataTemp[21] = Sphere.GetComponent<Rigidbody>().angularVelocity.z.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().angularVelocity.magnitude.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().mass.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().drag.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().angularDrag.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().useGravity.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().isKinematic.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().interpolation.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Rigidbody>().collisionDetectionMode.ToString();
+
+            rowDataTemp[22] = Convert.ToInt32(Sphere.GetComponent<Impact>().PlaneTouch).ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Impulse.x.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Impulse.y.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Impulse.z.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().pk.x.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().pk.y.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().pk.z.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().vk.x.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().vk.y.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().vk.z.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Speed.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Direction.x.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Direction.y.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Direction.z.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Magnitude.ToString();
+
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().a1.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().b1.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().a2.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().b2.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Sigma_pk.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Sigma_vk.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().Denom.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().W_pk.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().W_vk.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().IntegratedVector.x.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().IntegratedVector.y.ToString();
+            rowDataTemp[22] = Sphere.GetComponent<Impact>().IntegratedVector.z.ToString();
+
+
+
 
             leng++;
             rowData.Add(rowDataTemp);
