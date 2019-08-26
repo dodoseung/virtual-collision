@@ -49,7 +49,7 @@ public class TargetController : MonoBehaviour
         {
             TargetColor.color = Color.green;
         }
-        else if (TargetVelocity == 3)
+        else if (TargetVelocity == 2)
         {
             TargetColor.color = Color.red;
         }

@@ -9,9 +9,11 @@ public class MainController : MonoBehaviour
     public int Trial, MaxTrial = 30, AllTrial, SetTrial;
     public int TargetVelocity;
     public float Friction, Bounciness;
-    public bool Integration;
+    public bool Integration, NormalFirst = true;
     public bool TargetCollision;
-    public int[] ShuffleList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    public int[] ShuffleList;
+
+    int[] ShuffleListNormal = { 0, 1, 2, 3, 4, 5, 6, 7 }, ShuffleListInteg = {8, 9, 10, 11, 12, 13, 14, 15};
 
     void Start()
     {
@@ -19,7 +21,24 @@ public class MainController : MonoBehaviour
         Trial = AllTrial % MaxTrial;
         SetTrial = AllTrial / MaxTrial;
 
-        ShuffleArray<int>(ShuffleList);
+        ShuffleArray<int>(ShuffleListNormal);
+        ShuffleArray<int>(ShuffleListInteg);
+
+        ShuffleList = new int[16];
+        for (int i = 0; i < 8; i++)
+        {
+            if (NormalFirst)
+            {
+                ShuffleList[i] = ShuffleListNormal[i];
+                ShuffleList[i + 8] = ShuffleListInteg[i];
+            }
+            else
+            {
+                ShuffleList[i] = ShuffleListInteg[i];
+                ShuffleList[i + 8] = ShuffleListNormal[i];
+            }
+        }
+
         VariableSetup(ShuffleList[SetTrial]);
     }
 
@@ -36,11 +55,6 @@ public class MainController : MonoBehaviour
 
             VariableSetup(ShuffleList[SetTrial]);
         }
-/*
-        Status.GetComponent<TextMeshProUGUI>().SetText("Set: " + SetTrial.ToString() + " Trial: " + Trial.ToString() + "\n" +
-            Sphere.GetComponent<Rigidbody>().velocity.magnitude.ToString("F1") + "\n" +
-            "Integration: " + Integration.ToString() + "\n" + "TargetVelocity: " + TargetVelocity + "\n" +
-            "Friction: " + Friction.ToString("F1") + "\n" + "Bounciness: " + Bounciness.ToString("F1"));*/
     }
 
     void VariableSetup(int SetTrial)
@@ -53,7 +67,7 @@ public class MainController : MonoBehaviour
         if (SetTrial / 4 % 2 == 0)
             TargetVelocity = 1;
         else if (SetTrial / 4 % 2 == 1)
-            TargetVelocity = 3;
+            TargetVelocity = 2;
 
         if (SetTrial / 2 % 2 == 0)
             Friction = 0f;
