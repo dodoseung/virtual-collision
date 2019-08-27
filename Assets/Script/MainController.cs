@@ -9,7 +9,7 @@ public class MainController : MonoBehaviour
     public int Trial, MaxTrial = 30, AllTrial, SetTrial;
     public int TargetVelocity;
     public float Friction, Bounciness;
-    public bool Integration, NormalFirst = true;
+    public bool Integration, Model1_Normal = true, Model2_Integ;
     public bool TargetCollision;
     public int[] ShuffleList;
 
@@ -24,19 +24,17 @@ public class MainController : MonoBehaviour
         ShuffleArray<int>(ShuffleListNormal);
         ShuffleArray<int>(ShuffleListInteg);
 
-        ShuffleList = new int[16];
-        for (int i = 0; i < 8; i++)
+        if (Model2_Integ && !Model1_Normal)
         {
-            if (NormalFirst)
-            {
-                ShuffleList[i] = ShuffleListNormal[i];
-                ShuffleList[i + 8] = ShuffleListInteg[i];
-            }
-            else
-            {
-                ShuffleList[i] = ShuffleListInteg[i];
-                ShuffleList[i + 8] = ShuffleListNormal[i];
-            }
+            ShuffleList = ShuffleListInteg;
+        }
+        else if (Model1_Normal && !Model2_Integ)
+        {
+            ShuffleList = ShuffleListNormal;
+        }
+        else
+        {
+            Debug.Log("Check the model");
         }
 
         VariableSetup(ShuffleList[SetTrial]);

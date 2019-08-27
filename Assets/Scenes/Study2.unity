@@ -384,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &141220750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,7 +603,7 @@ Transform:
   m_Children:
   - {fileID: 316972445}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &316972444
 GameObject:
@@ -1193,7 +1193,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &691559514
 GameObject:
@@ -1342,6 +1342,12 @@ MonoBehaviour:
   Plane: {fileID: 2123337583}
   HMD: {fileID: 289682963}
   Sphere: {fileID: 655476538}
+  HmdPos: {x: -0.211514, y: 1.123112, z: 0.253498}
+  HmdFoward: {x: 0.109726, y: -0.07553031, z: 0.9909914}
+  HmdRight: {x: 0.9930496, y: 0.04732004, z: -0.1065138}
+  HmdUp: {x: -0.03885253, y: 0.9958077, z: 0.08016561}
+  PlanePos: {x: 0.1740495, y: 1.147545, z: 0.4755763}
+  Second: 1
 --- !u!4 &693346353
 Transform:
   m_ObjectHideFlags: 0
@@ -1354,7 +1360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &693346354
 MonoBehaviour:
@@ -1372,14 +1378,15 @@ MonoBehaviour:
   Status: {fileID: 43930309}
   Sphere: {fileID: 655476538}
   Trial: 0
-  MaxTrial: 5
+  MaxTrial: 30
   AllTrial: 0
   SetTrial: 0
   TargetVelocity: 0
   Friction: 0
   Bounciness: 0
   Integration: 0
-  NormalFirst: 1
+  Model1_Normal: 1
+  Model2_Integ: 0
   TargetCollision: 0
   ShuffleList: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
 --- !u!1 &715473036
@@ -1473,7 +1480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &821697254
 GameObject:
@@ -1564,7 +1571,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1287319661
 GameObject:
@@ -1582,7 +1589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1287319662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,7 +1604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Plane: {fileID: 2123337583}
   Camera: {fileID: 289682963}
-  Light: {fileID: 821697254}
+  Light: {fileID: 377786008}
   TestController: {fileID: 693346350}
   TargetController: {fileID: 736498473}
   Sphere: {fileID: 655476538}
@@ -1613,7 +1620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373280399
 GameObject:
@@ -1855,7 +1862,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086605671
 GameObject:
@@ -1993,7 +2000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 438510, guid: 9a32d482689653847b22155fb3096f79, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438510, guid: 9a32d482689653847b22155fb3096f79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2192,5 +2199,5 @@ Transform:
   - {fileID: 1373280400}
   - {fileID: 363035607}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

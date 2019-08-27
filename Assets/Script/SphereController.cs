@@ -7,7 +7,7 @@ public class SphereController : MonoBehaviour
     public GameObject TargetController, Sphere;
     public bool Integration;
     public Vector3 SpherePos, HmdFoward;
-    public float Friction, Bounciness, SphereDistance = 1f, SphereSpeed = 2f;
+    public float Friction, Bounciness, SphereDistance = 1.5f, SphereSpeed = 2f;
 
     void Update()
     {
@@ -25,6 +25,8 @@ public class SphereController : MonoBehaviour
         {
             ResetPosition();
         }
+
+        ChangeSphereColor();
     }
 
     public void ResetPosition()
@@ -38,16 +40,6 @@ public class SphereController : MonoBehaviour
             Sphere.GetComponent<Collider>().material.dynamicFriction = Friction;
             Sphere.GetComponent<Collider>().material.staticFriction = Friction;
             Sphere.GetComponent<Collider>().material.bounciness = Bounciness;
-            
-            if (Friction == 0 && Bounciness == 0)
-                Sphere.GetComponent<Renderer>().material.color = new Color(211 / 255f, 217 / 255f, 220 / 255f); // Ice
-            else if (Friction == 0.5f && Bounciness == 0)
-                Sphere.GetComponent<Renderer>().material.color = new Color(129 / 255f, 91 / 255f, 55 / 255f); // Wood
-            else if (Friction == 0 && Bounciness == 0.5f)
-                Sphere.GetComponent<Renderer>().material.color = new Color(255 / 255f, 247 / 255f, 160 / 255f); // New Material
-            else if (Friction == 0.5f && Bounciness == 0.5f)
-                Sphere.GetComponent<Renderer>().material.color = new Color(148 / 255f, 119 / 255f, 100 / 255f); // Rubber
-
             Sphere.GetComponent<Impact>().Integration = Integration;
 
             Sphere.transform.position = SpherePos + SphereDistance * HmdFoward;
@@ -56,6 +48,18 @@ public class SphereController : MonoBehaviour
 
             Invoke("Shooting", 1f);
         }
+    }
+
+    void ChangeSphereColor()
+    {
+        if (Friction == 0 && Bounciness == 0)
+            Sphere.GetComponent<Renderer>().material.color = new Color(211 / 255f, 217 / 255f, 220 / 255f); // Ice
+        else if (Friction == 0.5f && Bounciness == 0)
+            Sphere.GetComponent<Renderer>().material.color = new Color(129 / 255f, 91 / 255f, 55 / 255f); // Wood
+        else if (Friction == 0 && Bounciness == 0.5f)
+            Sphere.GetComponent<Renderer>().material.color = new Color(255 / 255f, 247 / 255f, 160 / 255f); // New Material
+        else if (Friction == 0.5f && Bounciness == 0.5f)
+            Sphere.GetComponent<Renderer>().material.color = new Color(148 / 255f, 100 / 255f, 142 / 255f); // Rubber
     }
 
     void Shooting()

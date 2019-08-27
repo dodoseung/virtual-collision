@@ -95,6 +95,7 @@
     <Compile Include="Assets\Script\Study1\TargetTran.cs" />
     <Compile Include="Assets\Script\Target.cs" />
     <Compile Include="Assets\Script\TargetController.cs" />
+    <Compile Include="Assets\Script\Temp.cs" />
     <Compile Include="Assets\test.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

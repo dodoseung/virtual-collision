@@ -7,11 +7,13 @@ public class Target : MonoBehaviour
     public bool CollisionDetection, AllCollisionDetection;
     public int TargetVelocity;
     public float SphereVelocity;
+    public Vector3 CollisionPoint, TargetImpulse;
 
     void Start()
     {
         CollisionDetection = false;
         AllCollisionDetection = false;
+        CollisionPoint = Vector3.zero;
     }
 
 
@@ -21,17 +23,18 @@ public class Target : MonoBehaviour
         {
             if (TargetVelocity == 1 && SphereVelocity <= 4f)
             {
-                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             else if (TargetVelocity == 2 && SphereVelocity > 4f)
             {
-                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
+                
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
 
+            TargetImpulse = collision.impulse;
+            CollisionPoint = collision.contacts[0].point;
             AllCollisionDetection = true;
         }
     }
@@ -42,17 +45,17 @@ public class Target : MonoBehaviour
         {
             if (TargetVelocity == 1 && SphereVelocity <= 4f)
             {
-                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
             else if (TargetVelocity == 2 && SphereVelocity > 4f)
             {
-                PilotCSV(this.transform.position, collision.contacts[0].point, SphereVelocity);
                 BroadcastMessage("Explode");
                 CollisionDetection = true;
             }
 
+            TargetImpulse = collision.impulse;
+            CollisionPoint = collision.contacts[0].point;
             AllCollisionDetection = true;
         }
     }
