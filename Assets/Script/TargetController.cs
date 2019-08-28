@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    public GameObject Target;
+    public GameObject Target, TestController;
     public Material TargetColor;
     public Vector3 HmdPos, HmdFoward, HmdRight, HmdUp, TargetPos;
     public Quaternion TargetQuat;
     public bool TargetCollision;
-    public float UpperBound, LowerBound, Zoffset;
-    public int TargetVelocity;
+    public float UpperBound, LowerBound, Xoffset, Yoffset, Zoffset, XRandom, YRandom, ZRandom;
+    public int TargetVelocity, TargetCount;
 
     GameObject TargetClone;
     
     void Start()
     {
         TargetVelocity = 1;
+        TargetCount = 0;
+        TestController.GetComponent<MainController>().VariableSetup();
         SpawnTarget();
     }
 
@@ -35,10 +37,25 @@ public class TargetController : MonoBehaviour
 
     void SpawnTarget()
     {
-        TargetPos = HmdPos + Random.Range(LowerBound, UpperBound) * HmdRight + Random.Range(LowerBound, UpperBound) * HmdUp + Random.Range(Zoffset + LowerBound, Zoffset + UpperBound) * HmdFoward;
-        TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
+        if (TargetCount % 10 == 0)
+        {
+            XRandom = Random.Range(Xoffset + LowerBound, Xoffset + UpperBound);
+            YRandom = Random.Range(Yoffset + LowerBound, Yoffset + UpperBound);
+            ZRandom = Random.Range(Zoffset + LowerBound, Zoffset + UpperBound);
+
+            TargetPos = HmdPos + YRandom * HmdRight + YRandom * HmdUp + ZRandom * HmdFoward;
+            TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
+        }
 
         TargetClone = Instantiate(Target, TargetPos, TargetQuat);
+        Invoke("TargetColliderActive", 0.5f);
+
+        TargetCount++;
+    }
+
+    void TargetColliderActive()
+    {
+        TargetClone.GetComponent<BoxCollider>().enabled = true;
     }
 
     void TargetVelocityChanger()

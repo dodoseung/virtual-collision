@@ -1342,11 +1342,11 @@ MonoBehaviour:
   Plane: {fileID: 2123337583}
   HMD: {fileID: 289682963}
   Sphere: {fileID: 655476538}
-  HmdPos: {x: -0.211514, y: 1.123112, z: 0.253498}
-  HmdFoward: {x: 0.109726, y: -0.07553031, z: 0.9909914}
-  HmdRight: {x: 0.9930496, y: 0.04732004, z: -0.1065138}
-  HmdUp: {x: -0.03885253, y: 0.9958077, z: 0.08016561}
-  PlanePos: {x: 0.1740495, y: 1.147545, z: 0.4755763}
+  HmdPos: {x: 0, y: 0, z: 0}
+  HmdFoward: {x: 0, y: 0, z: 0}
+  HmdRight: {x: 0, y: 0, z: 0}
+  HmdUp: {x: 0, y: 0, z: 0}
+  PlanePos: {x: 0, y: 0, z: 0}
   Second: 1
 --- !u!4 &693346353
 Transform:
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   Status: {fileID: 43930309}
   Sphere: {fileID: 655476538}
   Trial: 0
-  MaxTrial: 30
+  MaxTrial: 20
   AllTrial: 0
   SetTrial: 0
   TargetVelocity: 0
@@ -1456,6 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 38778715364417633, guid: 7536449aab6bbd54fbfa34b7cca4b1d8, type: 3}
+  TestController: {fileID: 693346350}
   TargetColor: {fileID: 2100000, guid: f2d4d4259f807b443ba53035e7c8ab09, type: 2}
   HmdPos: {x: 0, y: 0, z: 0}
   HmdFoward: {x: 0, y: 0, z: 0}
@@ -1466,8 +1467,14 @@ MonoBehaviour:
   TargetCollision: 0
   UpperBound: 0
   LowerBound: 0
+  Xoffset: 0
+  Yoffset: 0
   Zoffset: 0
+  XRandom: 0
+  YRandom: 0
+  ZRandom: 0
   TargetVelocity: 0
+  TargetCount: 0
 --- !u!4 &736498475
 Transform:
   m_ObjectHideFlags: 0

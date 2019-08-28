@@ -37,7 +37,7 @@ public class MainController : MonoBehaviour
             Debug.Log("Check the model");
         }
 
-        VariableSetup(ShuffleList[SetTrial]);
+        VariableSetup();
     }
 
     // Update is called once per frame
@@ -51,30 +51,30 @@ public class MainController : MonoBehaviour
             Trial = AllTrial % MaxTrial;
             SetTrial = AllTrial / MaxTrial;
 
-            VariableSetup(ShuffleList[SetTrial]);
+            VariableSetup();
         }
     }
 
-    void VariableSetup(int SetTrial)
+    public void VariableSetup()
     {
-        if (SetTrial / 8 % 2 == 0)
+        if (ShuffleList[SetTrial] / 8 % 2 == 0)
             Integration = false;
-        else if (SetTrial / 8 % 2 == 1)
+        else if (ShuffleList[SetTrial] / 8 % 2 == 1)
             Integration = true;
 
-        if (SetTrial / 4 % 2 == 0)
+        if (ShuffleList[SetTrial] / 4 % 2 == 0)
             TargetVelocity = 1;
-        else if (SetTrial / 4 % 2 == 1)
+        else if (ShuffleList[SetTrial] / 4 % 2 == 1)
             TargetVelocity = 2;
 
-        if (SetTrial / 2 % 2 == 0)
+        if (ShuffleList[SetTrial] / 2 % 2 == 0)
             Friction = 0f;
-        else if (SetTrial / 2 % 2 == 1)
+        else if (ShuffleList[SetTrial] / 2 % 2 == 1)
             Friction = 0.5f;
 
-        if (SetTrial / 1 % 2 == 0)
+        if (ShuffleList[SetTrial] / 1 % 2 == 0)
             Bounciness = 0f;
-        else if (SetTrial / 1 % 2 == 1)
+        else if (ShuffleList[SetTrial] / 1 % 2 == 1)
             Bounciness = 0.5f;
 
         this.GetComponent<SphereController>().Integration = Integration;

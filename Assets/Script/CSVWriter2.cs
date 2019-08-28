@@ -243,6 +243,13 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[181] = Light.GetComponent<Light>().color.g.ToString();
             rowDataTemp[182] = Light.GetComponent<Light>().color.b.ToString();
 
+            // Plus
+            rowDataTemp[183] = TargetController.GetComponent<TargetController>().Xoffset.ToString();
+            rowDataTemp[184] = TargetController.GetComponent<TargetController>().Yoffset.ToString();
+            rowDataTemp[185] = TargetController.GetComponent<TargetController>().XRandom.ToString();
+            rowDataTemp[186] = TargetController.GetComponent<TargetController>().YRandom.ToString();
+            rowDataTemp[187] = TargetController.GetComponent<TargetController>().ZRandom.ToString();
+
             leng++;
             rowData.Add(rowDataTemp);
         }
@@ -278,7 +285,8 @@ public class CSVWriter2 : MonoBehaviour
          "TargetSphereVel", "TargetVelocity", "ColPosX", "ColPosY", "ColPosZ", // 5
          "TargetImpulseX", "TargetImpulseY", "TargetImpulseZ", "TargetCollisionDetection", "TargetAllCollisionDetection", // 5
          "LightName", "LightPosX", "LightPosY", "LightPosZ", "LightRotX", "LightRotY", "LightRotZ", // 7 Light
-         "LightRange", "LightIntensity", "LightColorR", "LightColorG", "LightColorB" // 5
+         "LightRange", "LightIntensity", "LightColorR", "LightColorG", "LightColorB", // 5
+         "Xoffset", "Yoffset", "XRandom", "YRandom", "ZRandom"
         };
 
         listLength = rowDataTemp.Length;

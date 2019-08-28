@@ -17,15 +17,15 @@ public class ObjectPosition : MonoBehaviour
         HmdRight = Vector3.zero;
         HmdUp = Vector3.zero;
         PlanePos = Vector3.zero;
-
-        HmdPos = new Vector3(-0.211514f, 1.123112f, 0.253498f);
-        HmdFoward = new Vector3(0.109726f, -0.07553031f, 0.9909914f);
-        HmdRight = new Vector3(0.9930496f, 0.04732004f, -0.1065138f);
-        HmdUp = new Vector3(-0.03885253f, 0.9958077f, 0.08016561f);
-        PlanePos = new Vector3(0.08016561f, 1.147545f, 0.4755763f);
-
+ 
         if (Second)
         {
+            HmdPos = new Vector3(-0.2111456f, 1.244039f, 0.3260671f);
+            HmdFoward = new Vector3(0.052163f, 0.05381452f, 0.9964519f);
+            HmdRight = new Vector3(0.9983464f, 0.01219775f, -0.05255679f);
+            HmdUp = new Vector3(-0.0147833f, 0.9977602f, -0.05306929f);
+            PlanePos = new Vector3(-0.002709893f, 1.144056f, 0.6387287f);
+
             SetPosition();
         }
     }
@@ -34,7 +34,7 @@ public class ObjectPosition : MonoBehaviour
     {
         if (count >= buffer)
         {
-            HmdPos += HMD.transform.position;
+            HmdPos += HMD.transform.position; 
             HmdFoward += HMD.transform.forward;
             HmdRight += HMD.transform.right;
             HmdUp += HMD.transform.up;
@@ -64,7 +64,9 @@ public class ObjectPosition : MonoBehaviour
         TargetController.GetComponent<TargetController>().HmdFoward = HmdFoward;
         TargetController.GetComponent<TargetController>().HmdRight = HmdRight;
         TargetController.GetComponent<TargetController>().HmdUp = HmdUp;
-        TargetController.GetComponent<TargetController>().Zoffset = 3f;
+        TargetController.GetComponent<TargetController>().Xoffset = -1f;
+        TargetController.GetComponent<TargetController>().Yoffset = -1f;
+        TargetController.GetComponent<TargetController>().Zoffset = 4f;
         TargetController.GetComponent<TargetController>().UpperBound = 1f;
         TargetController.GetComponent<TargetController>().LowerBound = -1f;
 
