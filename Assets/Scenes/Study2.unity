@@ -1319,13 +1319,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetController: {fileID: 736498473}
   Sphere: {fileID: 655476538}
+  PhysicsMaterial: {fileID: 13400000, guid: aad0768b388e9d94a87e605e2239b564, type: 2}
   Integration: 0
   SpherePos: {x: 0, y: 0, z: 0}
   HmdFoward: {x: 0, y: 0, z: 0}
   Friction: 0
   Bounciness: 0
-  SphereDistance: 1.5
-  SphereSpeed: 2
+  SphereDistance: 0
+  SphereSpeed: 0
 --- !u!114 &693346352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,15 +1379,15 @@ MonoBehaviour:
   Status: {fileID: 43930309}
   Sphere: {fileID: 655476538}
   Trial: 0
-  MaxTrial: 20
+  MaxTrial: 5
   AllTrial: 0
   SetTrial: 0
   TargetVelocity: 0
   Friction: 0
   Bounciness: 0
   Integration: 0
-  Model1_Normal: 1
-  Model2_Integ: 0
+  Model1_Normal: 0
+  Model2_Integ: 1
   TargetCollision: 0
   ShuffleList: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
 --- !u!1 &715473036
@@ -2141,7 +2142,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123337583}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aad0768b388e9d94a87e605e2239b564, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

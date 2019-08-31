@@ -20,13 +20,15 @@ public class Impact : MonoBehaviour
         Impulse = collision.impulse;
         Magnitude = Impulse.magnitude;
 
-        Speed = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point).magnitude;
+        Speed = Plane.GetComponent<Rigidbody>().velocity.magnitude;
+        vk = Plane.GetComponent<Rigidbody>().velocity; // The velocity of the center point
         pk = collision.contacts[0].normal; // The normal vector of contact point
-        vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
         Direction = IntegrationVector(pk, vk, Speed);
-
+        Debug.Log(Impulse.ToString("F4"));
         if (Integration)
+        {
             this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
+        }
 
         if (collision.collider.CompareTag("Plane"))
         {
@@ -39,13 +41,15 @@ public class Impact : MonoBehaviour
         Impulse = collision.impulse;
         Magnitude = Impulse.magnitude;
 
-        Speed = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point).magnitude;
+        Speed = Plane.GetComponent<Rigidbody>().velocity.magnitude;
+        vk = Plane.GetComponent<Rigidbody>().velocity; // The velocity of the center point
         pk = collision.contacts[0].normal; // The normal vector of contact point
-        vk = Plane.GetComponent<Rigidbody>().GetPointVelocity(collision.contacts[0].point); // The velocity of the touched point
         Direction = IntegrationVector(pk, vk, Speed);
-
+        Debug.Log(Impulse.ToString("F4"));
         if (Integration)
+        {
             this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
+        }
 
         if (collision.collider.CompareTag("Plane"))
         {
@@ -70,18 +74,12 @@ public class Impact : MonoBehaviour
     {
         _pk = pk.normalized;
         _vk = vk.normalized;
-        
-        a1 = 23.416504758810860f;
-        b1 = 0.004467197881167f;
-        a2 = 22.344494266653612f;
-        b2 = 0.265585204526577f;
 
-        /*
-        a1 = 4.608524873987856f;
-        b1 = 1.065647570186457e-11f;
-        a2 = 4.453797446315623f;
-        b2 = 1.205449002690072f;
-        */
+        // Center Point
+        a1 = 1.018136168830097f;
+        b1 = 0.748575373552740f;
+        a2 = 2.590009727088067f;
+        b2 = 173.3239841461182f;
 
         Sigma_pk = a1 * (float)Math.Exp(b1 * _speed);
         Sigma_vk = 1 / ((float)Math.Exp(b2 * _speed) - 1) + a2;
@@ -90,7 +88,7 @@ public class Impact : MonoBehaviour
 
         W_pk = 1 / (float)Math.Pow(Sigma_pk, 2) / Denom;
         W_vk = 1 / (float)Math.Pow(Sigma_vk, 2) / Denom;
-        Debug.Log("Wpk: " + W_pk.ToString("F4") + " Wvk: " + W_vk.ToString("F4"));
+        //Debug.Log("Wpk: " + W_pk.ToString("F4") + " Wvk: " + W_vk.ToString("F4"));
         IntegratedVector = W_pk*pk + W_vk*vk;
 
         return IntegratedVector.normalized;

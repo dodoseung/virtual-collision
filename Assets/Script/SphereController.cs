@@ -5,9 +5,10 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
+    public PhysicMaterial PhysicsMaterial;
     public bool Integration;
     public Vector3 SpherePos, HmdFoward;
-    public float Friction, Bounciness, SphereDistance = 1.5f, SphereSpeed = 2f;
+    public float Friction, Bounciness, SphereDistance = 0f, SphereSpeed = 0f;
 
     void Update()
     {
@@ -18,7 +19,7 @@ public class SphereController : MonoBehaviour
 
         if (Sphere.GetComponent<Impact>().PlaneTouch)
         {
-            Invoke("ResetPosition", 3f);
+            Invoke("ResetPosition", 5f);
         }
 
         if (Sphere.transform.position.z < (SpherePos.z - 1.0f))
@@ -26,7 +27,7 @@ public class SphereController : MonoBehaviour
             ResetPosition();
         }
 
-        ChangeSphereColor();
+        ChangeSphereProperties();
     }
 
     public void ResetPosition()
@@ -37,12 +38,8 @@ public class SphereController : MonoBehaviour
             Sphere.GetComponent<Rigidbody>().isKinematic = true;
             Sphere.GetComponent<Rigidbody>().isKinematic = false;
 
-            Sphere.GetComponent<Collider>().material.dynamicFriction = Friction;
-            Sphere.GetComponent<Collider>().material.staticFriction = Friction;
-            Sphere.GetComponent<Collider>().material.bounciness = Bounciness;
-            Sphere.GetComponent<Impact>().Integration = Integration;
-
-            Sphere.transform.position = SpherePos + SphereDistance * HmdFoward;
+            //Sphere.transform.position = SpherePos + SphereDistance * HmdFoward;
+            Sphere.transform.position = SpherePos;
 
             CancelInvoke();
 
@@ -50,16 +47,22 @@ public class SphereController : MonoBehaviour
         }
     }
 
-    void ChangeSphereColor()
+    void ChangeSphereProperties()
     {
         if (Friction == 0 && Bounciness == 0)
             Sphere.GetComponent<Renderer>().material.color = new Color(211 / 255f, 217 / 255f, 220 / 255f); // Ice
         else if (Friction == 0.5f && Bounciness == 0)
             Sphere.GetComponent<Renderer>().material.color = new Color(129 / 255f, 91 / 255f, 55 / 255f); // Wood
         else if (Friction == 0 && Bounciness == 0.5f)
-            Sphere.GetComponent<Renderer>().material.color = new Color(255 / 255f, 247 / 255f, 160 / 255f); // New Material
+            Sphere.GetComponent<Renderer>().material.color = Color.yellow; //new Color(255 / 255f, 247 / 255f, 160 / 255f); // New Material
         else if (Friction == 0.5f && Bounciness == 0.5f)
             Sphere.GetComponent<Renderer>().material.color = new Color(148 / 255f, 100 / 255f, 142 / 255f); // Rubber
+        
+        PhysicsMaterial.dynamicFriction = Friction;
+        PhysicsMaterial.staticFriction = Friction;
+        PhysicsMaterial.bounciness = Bounciness;
+        Sphere.GetComponent<Impact>().Integration = Integration;
+        
     }
 
     void Shooting()

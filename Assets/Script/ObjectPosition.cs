@@ -20,11 +20,10 @@ public class ObjectPosition : MonoBehaviour
  
         if (Second)
         {
-            HmdPos = new Vector3(-0.2111456f, 1.244039f, 0.3260671f);
-            HmdFoward = new Vector3(0.052163f, 0.05381452f, 0.9964519f);
-            HmdRight = new Vector3(0.9983464f, 0.01219775f, -0.05255679f);
-            HmdUp = new Vector3(-0.0147833f, 0.9977602f, -0.05306929f);
-            PlanePos = new Vector3(-0.002709893f, 1.144056f, 0.6387287f);
+            HmdPos = new Vector3(-0.2469438f, 1.196561f, 0.2023009f);
+            HmdFoward = new Vector3(0.05143467f, 0.03746257f, 0.9974154f);
+            HmdRight = new Vector3(0.9958379f, 0.06804141f, -0.05397572f);
+            HmdUp = new Vector3(-0.06971103f, 0.9967855f, -0.03388198f);
 
             SetPosition();
         }
@@ -72,7 +71,9 @@ public class ObjectPosition : MonoBehaviour
 
         Debug.Log("Sphere On");
         Sphere.SetActive(true);
-        this.GetComponent<SphereController>().SpherePos = new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
+        //Vector3 TempPos = 0.4f * (PlanePos - HmdPos);
+        //this.GetComponent<SphereController>().SpherePos = HmdPos + TempPos + new Vector3(0, 0, TempPos.magnitude); //new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
+        this.GetComponent<SphereController>().SpherePos = HmdPos + new Vector3(0.2f, -0.2f, 0.45f);
         this.GetComponent<SphereController>().HmdFoward = HmdFoward;
         this.GetComponent<SphereController>().ResetPosition();
 

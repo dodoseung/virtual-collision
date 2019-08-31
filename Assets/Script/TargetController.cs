@@ -37,6 +37,7 @@ public class TargetController : MonoBehaviour
 
     void SpawnTarget()
     {
+        /*
         if (TargetCount % 10 == 0)
         {
             XRandom = Random.Range(Xoffset + LowerBound, Xoffset + UpperBound);
@@ -46,6 +47,9 @@ public class TargetController : MonoBehaviour
             TargetPos = HmdPos + YRandom * HmdRight + YRandom * HmdUp + ZRandom * HmdFoward;
             TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
         }
+        */
+        TargetPos = HmdPos + new Vector3(-1.3f, -2f, 5f);
+        TargetQuat = Quaternion.LookRotation(HmdPos - TargetPos);
 
         TargetClone = Instantiate(Target, TargetPos, TargetQuat);
         Invoke("TargetColliderActive", 0.5f);
