@@ -27,6 +27,11 @@ public class SphereController : MonoBehaviour
             ResetPosition();
         }
 
+        if ((Sphere.transform.position - SpherePos).magnitude > 7f)
+        {
+            ResetPosition();
+        }
+
         ChangeSphereProperties();
     }
 

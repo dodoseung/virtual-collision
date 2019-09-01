@@ -13,10 +13,12 @@ public class CSVWriter2 : MonoBehaviour
     GameObject Target;
     float timer = 0;
     int leng = 0, listLength;
+    bool flip = true;
 
     // Use this for initialization
     void Start()
     {
+        flip = true;
         Setup();
     }
 
@@ -24,7 +26,7 @@ public class CSVWriter2 : MonoBehaviour
     {
         if (TestController.GetComponent<MainController>().SetTrial == 8)
         {
-            Save();
+            Save(8);
             Debug.Log("Saved");
         }
         else
@@ -250,13 +252,39 @@ public class CSVWriter2 : MonoBehaviour
             rowDataTemp[186] = TargetController.GetComponent<TargetController>().YRandom.ToString();
             rowDataTemp[187] = TargetController.GetComponent<TargetController>().ZRandom.ToString();
 
+            rowDataTemp[188] = Convert.ToInt32(Plane.GetComponent<PlaneCollision>().col).ToString();
+
             leng++;
             rowData.Add(rowDataTemp);
+        }
+
+        if (TestController.GetComponent<MainController>().SetTrial == 2 && flip)
+        {
+            Save(2);
+            Debug.Log("Saved");
+            flip = !flip;
+            Setup();
+        }
+        else if (TestController.GetComponent<MainController>().SetTrial == 4 && !flip)
+        {
+            Save(4);
+            Debug.Log("Saved");
+            flip = !flip;
+            Setup();
+        }
+        else if (TestController.GetComponent<MainController>().SetTrial == 6 && flip)
+        {
+            Save(6);
+            Debug.Log("Saved");
+            flip = !flip;
+            Setup();
         }
     }
 
     void Setup()
     {
+        rowData = new List<string[]>();
+
         // Creating First row of titles manually.. 
         string[] rowDataTemp = {
          "Time", "AllTrial", "MaxTrial", "SetTrial", "Trial", "Model1_Normal", "Model2_Integ", // Main Controller
@@ -286,7 +314,7 @@ public class CSVWriter2 : MonoBehaviour
          "TargetImpulseX", "TargetImpulseY", "TargetImpulseZ", "TargetCollisionDetection", "TargetAllCollisionDetection", // 5
          "LightName", "LightPosX", "LightPosY", "LightPosZ", "LightRotX", "LightRotY", "LightRotZ", // 7 Light
          "LightRange", "LightIntensity", "LightColorR", "LightColorG", "LightColorB", // 5
-         "Xoffset", "Yoffset", "XRandom", "YRandom", "ZRandom"
+         "Xoffset", "Yoffset", "XRandom", "YRandom", "ZRandom", "PlaneCol"
         };
 
         listLength = rowDataTemp.Length;
@@ -294,7 +322,7 @@ public class CSVWriter2 : MonoBehaviour
         rowData.Add(rowDataTemp);
     }
 
-    void Save()
+    void Save(int num)
     {
         string[][] output = new string[rowData.Count][];
 
@@ -312,7 +340,7 @@ public class CSVWriter2 : MonoBehaviour
             sb.AppendLine(string.Join(delimiter, output[index]));
 
 
-        string filePath = getPath();
+        string filePath = getPath(num);
 
         StreamWriter outStream = System.IO.File.CreateText(filePath);
         outStream.WriteLine(sb);
@@ -320,10 +348,10 @@ public class CSVWriter2 : MonoBehaviour
     }
 
     // Following method is used to retrive the relative path as device platform
-    private string getPath()
+    private string getPath(int num)
     {
 #if UNITY_EDITOR
-        return Application.dataPath + "/CSV/" + "Saved_data.csv";
+        return Application.dataPath + "/CSV/" + "Saved_data" + num.ToString() + ".csv";
 #elif UNITY_ANDROID
         return Application.persistentDataPath+"Saved_data.csv";
 #elif UNITY_IPHONE
