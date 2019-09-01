@@ -81,6 +81,10 @@ public class MainController : MonoBehaviour
         TargetController.GetComponent<TargetController>().TargetVelocity = TargetVelocity;
         this.GetComponent<SphereController>().Friction = Friction;
         this.GetComponent<SphereController>().Bounciness = Bounciness;
+
+        Debug.Log("All: " + AllTrial.ToString() + " Set: " + SetTrial.ToString() + " Trial: " + Trial.ToString());
+        Debug.Log("List: " + ShuffleList[SetTrial].ToString() + " / Integration: " + Integration.ToString() +
+            " / TargetVel: " + TargetVelocity.ToString() + " / Friction: " + Friction.ToString() + " / Bounciness: " + Bounciness.ToString());
     }
 
     public static void ShuffleArray<T>(T[] array)

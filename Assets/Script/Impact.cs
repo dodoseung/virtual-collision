@@ -24,7 +24,7 @@ public class Impact : MonoBehaviour
         vk = Plane.GetComponent<Rigidbody>().velocity; // The velocity of the center point
         pk = collision.contacts[0].normal; // The normal vector of contact point
         Direction = IntegrationVector(pk, vk, Speed);
-        Debug.Log(Impulse.ToString("F4"));
+
         if (Integration)
         {
             this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
@@ -45,7 +45,7 @@ public class Impact : MonoBehaviour
         vk = Plane.GetComponent<Rigidbody>().velocity; // The velocity of the center point
         pk = collision.contacts[0].normal; // The normal vector of contact point
         Direction = IntegrationVector(pk, vk, Speed);
-        Debug.Log(Impulse.ToString("F4"));
+
         if (Integration)
         {
             this.GetComponent<Rigidbody>().AddForce(Magnitude * Direction - Impulse, ForceMode.Impulse);
@@ -88,7 +88,7 @@ public class Impact : MonoBehaviour
 
         W_pk = 1 / (float)Math.Pow(Sigma_pk, 2) / Denom;
         W_vk = 1 / (float)Math.Pow(Sigma_vk, 2) / Denom;
-        //Debug.Log("Wpk: " + W_pk.ToString("F4") + " Wvk: " + W_vk.ToString("F4"));
+
         IntegratedVector = W_pk*pk + W_vk*vk;
 
         return IntegratedVector.normalized;

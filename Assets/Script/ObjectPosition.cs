@@ -8,7 +8,7 @@ public class ObjectPosition : MonoBehaviour
 
     public Vector3 HmdPos, HmdFoward, HmdRight, HmdUp, PlanePos;
     public bool Second;
-    int buffer = 500, num = 1500, count = 0;
+    int buffer = 250, num = 1000, count = 0;
 
     private void Start()
     {
