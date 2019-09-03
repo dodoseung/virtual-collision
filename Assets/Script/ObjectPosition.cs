@@ -20,10 +20,10 @@ public class ObjectPosition : MonoBehaviour
  
         if (Second)
         {
-            HmdPos = new Vector3(-0.1890072f, 1.170255f, 0.2299668f);
-            HmdFoward = new Vector3(0.003428741f, -0.06975085f, 0.9975339f);
-            HmdRight = new Vector3(0.9998541f, 0.01524887f, -0.002375597f);
-            HmdUp = new Vector3(-0.01503214f, 0.9974357f, 0.06977897f);
+            HmdPos = new Vector3(-0.1659156f, 1.215874f, 0.3316885f);
+            HmdFoward = new Vector3(0.05342712f, - 0.08646919f, 0.9942963f);
+            HmdRight = new Vector3(0.9974918f, - 0.03238526f, - 0.05629414f);
+            HmdUp = new Vector3(0.03744887f, 0.9953464f, 0.08449227f);
 
             SetPosition();
         }
