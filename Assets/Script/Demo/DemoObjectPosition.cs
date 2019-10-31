@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPosition : MonoBehaviour
+public class DemoObjectPosition : MonoBehaviour
 {
     public GameObject TargetController, Plane, HMD, Sphere;
 
@@ -20,10 +20,10 @@ public class ObjectPosition : MonoBehaviour
  
         if (Second)
         {
-            HmdPos = new Vector3(-0.1659156f, 1.215874f, 0.3316885f);
-            HmdFoward = new Vector3(0.05342712f, - 0.08646919f, 0.9942963f);
-            HmdRight = new Vector3(0.9974918f, - 0.03238526f, - 0.05629414f);
-            HmdUp = new Vector3(0.03744887f, 0.9953464f, 0.08449227f);
+            HmdPos = new Vector3(0.134612f, 1.247254f, 0.2088506f);
+            HmdFoward = new Vector3(0.05196295f, - 0.08140586f, 0.9952887f);
+            HmdRight = new Vector3(0.9985265f, 0.01886023f, - 0.05057435f);
+            HmdUp = new Vector3(-0.01467216f, 0.9964612f, 0.08225657f);
 
             SetPosition();
         }
@@ -59,23 +59,25 @@ public class ObjectPosition : MonoBehaviour
     {
         Debug.Log("TargetController On");
         TargetController.SetActive(true);
-        TargetController.GetComponent<TargetController>().HmdPos = HmdPos;
-        TargetController.GetComponent<TargetController>().HmdFoward = HmdFoward;
-        TargetController.GetComponent<TargetController>().HmdRight = HmdRight;
-        TargetController.GetComponent<TargetController>().HmdUp = HmdUp;
-        TargetController.GetComponent<TargetController>().Xoffset = -1f;
-        TargetController.GetComponent<TargetController>().Yoffset = -1f;
-        TargetController.GetComponent<TargetController>().Zoffset = 4f;
-        TargetController.GetComponent<TargetController>().UpperBound = 1f;
-        TargetController.GetComponent<TargetController>().LowerBound = -1f;
+        TargetController.GetComponent<DemoTargetController>().HmdPos = HmdPos;
+        TargetController.GetComponent<DemoTargetController>().HmdFoward = HmdFoward;
+        TargetController.GetComponent<DemoTargetController>().HmdRight = HmdRight;
+        TargetController.GetComponent<DemoTargetController>().HmdUp = HmdUp;
+        TargetController.GetComponent<DemoTargetController>().Xoffset = -1f;
+        TargetController.GetComponent<DemoTargetController>().Yoffset = -1f;
+        TargetController.GetComponent<DemoTargetController>().Zoffset = 4f;
+        TargetController.GetComponent<DemoTargetController>().UpperBound = 1f;
+        TargetController.GetComponent<DemoTargetController>().LowerBound = -1f;
 
         Debug.Log("Sphere On");
         Sphere.SetActive(true);
         //Vector3 TempPos = 0.4f * (PlanePos - HmdPos);
         //this.GetComponent<SphereController>().SpherePos = HmdPos + TempPos + new Vector3(0, 0, TempPos.magnitude); //new Vector3(PlanePos.x, PlanePos.y, PlanePos.z + 0.15f);
-        this.GetComponent<SphereController>().SpherePos = HmdPos + new Vector3(0.2f, -0.2f, 0.45f);
-        this.GetComponent<SphereController>().HmdFoward = HmdFoward;
-        this.GetComponent<SphereController>().ResetPosition();
+        this.GetComponent<DemoSphereController>().SpherePos = HmdPos + new Vector3(0.2f, -0.2f, 0.45f);
+        this.GetComponent<DemoSphereController>().HmdFoward = HmdFoward;
+        this.GetComponent<DemoSphereController>().ResetPosition();
+
+        HMD.transform.position = HmdPos;
 
         Destroy(this);
     }

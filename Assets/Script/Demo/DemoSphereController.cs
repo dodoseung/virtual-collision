@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereController : MonoBehaviour
+public class DemoSphereController : MonoBehaviour
 {
     public GameObject TargetController, Sphere;
     public PhysicMaterial PhysicsMaterial;
@@ -12,7 +12,7 @@ public class SphereController : MonoBehaviour
 
     void Update()
     {
-        if (TargetController.GetComponent<TargetController>().TargetCollision)
+        if (TargetController.GetComponent<DemoTargetController>().TargetCollision)
         {
             ResetPosition();
         }
@@ -54,15 +54,14 @@ public class SphereController : MonoBehaviour
 
     void ChangeSphereProperties()
     {
-        if (Friction == 0 && Bounciness == 0)
-            Sphere.GetComponent<Renderer>().material.color = new Color(211 / 255f, 217 / 255f, 220 / 255f); // Ice
-        else if (Friction == 0.5f && Bounciness == 0)
-            Sphere.GetComponent<Renderer>().material.color = new Color(129 / 255f, 91 / 255f, 55 / 255f); // Wood
-        else if (Friction == 0 && Bounciness == 0.5f)
-            Sphere.GetComponent<Renderer>().material.color = Color.yellow; //new Color(255 / 255f, 247 / 255f, 160 / 255f); // New Material
-        else if (Friction == 0.5f && Bounciness == 0.5f)
-            Sphere.GetComponent<Renderer>().material.color = new Color(148 / 255f, 100 / 255f, 142 / 255f); // Rubber
-        
+        if (Integration)
+            Sphere.GetComponent<Renderer>().material.color = new Color(42 / 255f, 255 / 255f, 188 / 255f); // Integ
+        else if (!Integration)
+            Sphere.GetComponent<Renderer>().material.color = new Color(255 / 255f, 178 / 255f, 0); // Normal
+
+        Friction = 0.2f;
+        Bounciness = 0.2f;
+
         PhysicsMaterial.dynamicFriction = Friction;
         PhysicsMaterial.staticFriction = Friction;
         PhysicsMaterial.bounciness = Bounciness;
@@ -70,6 +69,7 @@ public class SphereController : MonoBehaviour
         
     }
 
+    // Move the ball to the user 'SphereSpeed' m/s
     void Shooting()
     {
         Sphere.GetComponent<Rigidbody>().AddForce(-SphereSpeed * HmdFoward, ForceMode.Impulse);

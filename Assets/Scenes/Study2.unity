@@ -1340,8 +1340,8 @@ MonoBehaviour:
   Friction: 0
   Bounciness: 0
   Integration: 0
-  Model1_Normal: 0
-  Model2_Integ: 1
+  Model1_Normal: 1
+  Model2_Integ: 0
   TargetCollision: 0
   ShuffleList: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
 --- !u!1 &715473036
